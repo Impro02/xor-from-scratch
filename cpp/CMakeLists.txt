@@ -10,7 +10,7 @@ add_executable(HelloWorld
     src/main.cpp
     src/network/network.cpp
     src/functions/activation/tanh_function.cpp
-    src/functions/loss/loss.cpp
+    src/functions/loss/mse_loss_function.cpp
     src/layer/activation_layer.cpp
     src/layer/fc_layer.cpp
 )

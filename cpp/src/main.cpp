@@ -1,6 +1,6 @@
 #include <iostream>
 #include <Eigen/Dense>
-#include "functions/loss/loss.h"
+#include "functions/loss/mse_loss_function.h"
 #include "functions/activation/tanh_function.h"
 #include "layer/activation_layer.h"
 #include "layer/fc_layer.h"
@@ -8,14 +8,14 @@
 
 int main()
 {
-    Eigen::MatrixXd x_train;
-    Eigen::MatrixXd y_train;
+    Eigen::MatrixXd xTrain(4, 2);
+    Eigen::MatrixXd yTrain(4, 1);
 
-    x_train << 0, 0,
+    xTrain << 0, 0,
         0, 1,
         1, 0,
         1, 1;
-    y_train << 0,
+    yTrain << 0,
         1,
         1,
         0;
@@ -28,9 +28,9 @@ int main()
     network.add(std::make_shared<FCLayer>(3, 1, 0.05));
     network.add(std::make_shared<ActivationLayer>(std::make_shared<TanhFunction>()));
 
-    network.fit(x_train, y_train, 1000);
+    network.fit(xTrain, yTrain, 1000);
 
-    Eigen::MatrixXd output = network.predict(x_train);
+    Eigen::MatrixXd output = network.predict(xTrain);
 
     std::cout << output << std::endl;
 
