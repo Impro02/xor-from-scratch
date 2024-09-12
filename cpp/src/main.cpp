@@ -1,6 +1,7 @@
 #include <iostream>
 #include <Eigen/Dense>
 #include "functions/loss/loss.h"
+#include "functions/activation/tanh_function.h"
 #include "layer/activation_layer.h"
 #include "layer/fc_layer.h"
 #include "network/network.h"

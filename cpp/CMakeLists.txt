@@ -9,7 +9,7 @@ find_package(eigen3 CONFIG REQUIRED)
 add_executable(HelloWorld 
     src/main.cpp
     src/network/network.cpp
-    src/functions/activation/activation.cpp
+    src/functions/activation/tanh_function.cpp
     src/functions/loss/loss.cpp
     src/layer/activation_layer.cpp
     src/layer/fc_layer.cpp

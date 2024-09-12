@@ -2,7 +2,7 @@
 #define ACTIVATIONLAYER_H
 
 #include "layer/layer.h"
-#include "functions/activation/activation.h"
+#include "functions/activation/activation_function.h"
 
 class ActivationLayer : public Layer
 {

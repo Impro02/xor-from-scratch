@@ -12,14 +12,4 @@ public:
     virtual Eigen::MatrixXd derivative(const Eigen::MatrixXd &x) const = 0;
 };
 
-class TanhFunction : public ActivationFunction
-{
-public:
-    TanhFunction() = default;
-
-    Eigen::MatrixXd activate(const Eigen::MatrixXd &x) const override;
-
-    Eigen::MatrixXd derivative(const Eigen::MatrixXd &x) const override;
-};
-
 #endif // ACTIVATIONFUNCTION_H

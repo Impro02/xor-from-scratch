@@ -1,7 +1,7 @@
 #ifndef LAYER_H
 #define LAYER_H
 
-#include "functions/activation/activation.h"
+#include <Eigen/Dense>
 
 class Layer
 {
