@@ -1,6 +1,6 @@
 import numpy as np
 
-from network import Network
+from network.network import Network
 
 # LAYERS
 from layers import ActivationLayer, FCLayer
