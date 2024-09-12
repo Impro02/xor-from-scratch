@@ -17,12 +17,12 @@ class Network:
         self,
         loss: LossFunction,
     ) -> None:
-        self.layers: List[Layer] = []
-        self.loss = loss
+        self._layers: List[Layer] = []
+        self._loss = loss
 
     # add layer to network
     def add(self, layer: Layer) -> None:
-        self.layers.append(layer)
+        self._layers.append(layer)
 
     # predict output for given input
     def predict(self, input_data: NDArray[Any]):
@@ -34,7 +34,7 @@ class Network:
         for i in range(samples):
             # forward propagation
             output = input_data[i]
-            for layer in self.layers:
+            for layer in self._layers:
                 output = layer.forward_propagation(output)
             result.append(output)
 
@@ -57,15 +57,15 @@ class Network:
             for j in range(samples):
                 # forward propagation
                 output = x_train[j]  # 2D NDARRAY
-                for layer in self.layers:
+                for layer in self._layers:
                     output = layer.forward_propagation(output)
 
                 # compute loss (for display purpose only)
-                err += self.loss(y_train[j], output)
+                err += self._loss(y_train[j], output)
 
                 # backward propagation
-                error = self.loss.prime(y_train[j], output)
-                for layer in reversed(self.layers):
+                error = self._loss.prime(y_train[j], output)
+                for layer in reversed(self._layers):
                     error = layer.backward_propagation(
                         output_error=error,
                         learning_rate=learning_rate,
