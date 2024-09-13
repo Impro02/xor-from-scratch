@@ -43,8 +43,8 @@ class Network:
     # train the network
     def fit(
         self,
-        x_train: NDArray[Any],  # 3D NDARRAY
-        y_train: NDArray[Any],  # 3D NDARRAY
+        x_train: NDArray[Any],
+        y_train: NDArray[Any],
         epochs: int,
     ) -> None:
         # sample dimension first
@@ -55,7 +55,7 @@ class Network:
             err: float = 0
             for j in range(samples):
                 # forward propagation
-                output = x_train[j]  # 2D NDARRAY
+                output = x_train[j]
                 for layer in self._layers:
                     output = layer.forward_propagation(output)
 
@@ -71,4 +71,6 @@ class Network:
 
             # calculate average error on all samples
             err /= samples
-            print("epoch %d/%d   error=%f" % (i + 1, epochs, err))
+
+            if i == 0 or (i + 1) % 100 == 0:
+                print("epoch %d/%d   error=%f" % (i + 1, epochs, err))
