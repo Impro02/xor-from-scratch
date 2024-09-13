@@ -1,4 +1,5 @@
 #include <cmath>
+
 #include "functions/activation/tanh_function.h"
 
 Eigen::MatrixXd TanhFunction::activate(const Eigen::MatrixXd &x) const

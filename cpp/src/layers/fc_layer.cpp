@@ -1,5 +1,7 @@
-#include "layer/fc_layer.h"
+#include <iostream>
 #include <memory>
+
+#include "layers/fc_layer.h"
 
 // Constructor
 FCLayer::FCLayer(int inputSize, int outputSize, double learningRate)
@@ -13,6 +15,10 @@ FCLayer::FCLayer(int inputSize, int outputSize, double learningRate)
 Eigen::MatrixXd FCLayer::forwardPropagation(const Eigen::MatrixXd &x)
 {
     m_input = x;
+
+    std::cout << x << std::endl;
+    std::cout << m_weights << std::endl;
+    std::cout << m_bias << std::endl;
 
     m_output = m_weights * x + m_bias;
 

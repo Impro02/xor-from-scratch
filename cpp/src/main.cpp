@@ -1,9 +1,10 @@
 #include <iostream>
 #include <Eigen/Dense>
+
 #include "functions/loss/mse_loss_function.h"
 #include "functions/activation/tanh_function.h"
-#include "layer/activation_layer.h"
-#include "layer/fc_layer.h"
+#include "layers/activation_layer.h"
+#include "layers/fc_layer.h"
 #include "network/network.h"
 
 int main()

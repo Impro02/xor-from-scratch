@@ -2,6 +2,7 @@
 #define TANHFUNCTION_H
 
 #include <Eigen/Dense>
+
 #include "functions/activation/activation_function.h"
 
 class TanhFunction : public ActivationFunction

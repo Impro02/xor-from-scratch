@@ -1,8 +1,8 @@
 #ifndef ACTIVATIONLAYER_H
 #define ACTIVATIONLAYER_H
 
-#include "layer/layer.h"
 #include "functions/activation/activation_function.h"
+#include "layers/layer.h"
 
 class ActivationLayer : public Layer
 {

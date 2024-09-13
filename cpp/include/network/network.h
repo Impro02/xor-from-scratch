@@ -3,9 +3,11 @@
 
 #include <memory>
 #include <vector>
+
 #include <Eigen/Dense>
-#include "layer/Layer.h"
+
 #include "functions/loss/loss_function.h"
+#include "layers/Layer.h"
 
 class Network
 {

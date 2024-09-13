@@ -1,5 +1,6 @@
-#include "layer/activation_layer.h"
 #include <memory>
+
+#include "layers/activation_layer.h"
 
 // Constructor
 ActivationLayer::ActivationLayer(std::shared_ptr<ActivationFunction> activation)

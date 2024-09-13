@@ -11,10 +11,10 @@ add_executable(HelloWorld
     src/network/network.cpp
     src/functions/activation/tanh_function.cpp
     src/functions/loss/mse_loss_function.cpp
-    src/layer/activation_layer.cpp
-    src/layer/fc_layer.cpp
+    src/layers/activation_layer.cpp
+    src/layers/fc_layer.cpp
 )
 
-include_directories(${CMAKE_SOURCE_DIR}/src)
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
 target_link_libraries(HelloWorld PRIVATE fmt::fmt Eigen3::Eigen)

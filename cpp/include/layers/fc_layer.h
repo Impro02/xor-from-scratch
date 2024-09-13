@@ -1,7 +1,7 @@
 #ifndef FCLAYER_H
 #define FCLAYER_H
 
-#include "layer/layer.h"
+#include "layers/layer.h"
 
 class FCLayer : public Layer
 {
