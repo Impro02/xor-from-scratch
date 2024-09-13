@@ -9,32 +9,41 @@ from layers import ActivationLayer, FCLayer
 from functions.activation import TanhFunction
 from functions.loss import MseLossFunction
 
-# training data
-x_train = np.array(
-    [[[0, 0]], [[0, 1]], [[1, 0]], [[1, 1]]],
-    dtype=np.int32,
-)
-y_train = np.array(
-    [[[0]], [[1]], [[1]], [[0]]],
-    dtype=np.int32,
-)
 
-# network
-net = Network(
-    loss=MseLossFunction(),
-)
-net.add(FCLayer(2, 3, learning_rate=0.05))
-net.add(ActivationLayer(activation=TanhFunction()))
-net.add(FCLayer(3, 1, learning_rate=0.05))
-net.add(ActivationLayer(activation=TanhFunction()))
+def main():
+    # training data
+    x_train = np.array(
+        [[[0, 0]], [[0, 1]], [[1, 0]], [[1, 1]]],
+        dtype=np.int32,
+    )
+    y_train = np.array(
+        [[[0]], [[1]], [[1]], [[0]]],
+        dtype=np.int32,
+    )
 
-# train
-net.fit(
-    x_train,
-    y_train,
-    epochs=1000,
-)
+    # loss function
+    mse_loss = MseLossFunction()
 
-# test
-out = net.predict(x_train)
-print(out)
+    # network
+    network = Network(loss=mse_loss)
+
+    network.add(FCLayer(2, 3, learning_rate=0.05))
+    network.add(ActivationLayer(activation=TanhFunction()))
+    network.add(FCLayer(3, 1, learning_rate=0.05))
+    network.add(ActivationLayer(activation=TanhFunction()))
+
+    # train
+    network.fit(
+        x_train,
+        y_train,
+        epochs=1000,
+    )
+
+    # test
+    out = network.predict(x_train)
+
+    print(out)
+
+
+if __name__ == "__main__":
+    main()
