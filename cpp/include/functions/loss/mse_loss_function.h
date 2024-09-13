@@ -2,6 +2,7 @@
 #define MSELOSSFUNCTION_H
 
 #include <Eigen/Dense>
+
 #include "functions/loss/loss_function.h"
 
 class MseLossFunction : public LossFunction
