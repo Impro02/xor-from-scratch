@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(HelloWorld)
+project(XorFromScratch)
 
 find_package(fmt CONFIG REQUIRED)
 find_package(eigen3 CONFIG REQUIRED)
 
 
-add_executable(HelloWorld 
+add_executable(XorFromScratch 
     src/main.cpp
     src/network/network.cpp
     src/functions/activation/tanh_function.cpp
@@ -17,4 +17,4 @@ add_executable(HelloWorld
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-target_link_libraries(HelloWorld PRIVATE fmt::fmt Eigen3::Eigen)
+target_link_libraries(XorFromScratch PRIVATE fmt::fmt Eigen3::Eigen)
