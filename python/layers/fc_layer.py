@@ -31,11 +31,11 @@ class FCLayer(Layer):
         self,
         output_error: NDArray,
     ) -> NDArray:
-        input_error = np.dot(output_error, self.weights.T)
         weights_error = np.dot(self.input.T, output_error)
-        # dBias = output_error
+        bias_error = output_error
 
         # update parameters
         self.weights -= self.learning_rate * weights_error
-        self.bias -= self.learning_rate * output_error
-        return input_error
+        self.bias -= self.learning_rate * bias_error
+
+        return np.dot(output_error, self.weights.T)
