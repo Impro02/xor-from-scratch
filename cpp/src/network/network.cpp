@@ -1,5 +1,7 @@
-#include "network/network.h"
+#include <iostream>
 #include <memory>
+
+#include "network/network.h"
 
 // Constructor
 Network::Network(std::shared_ptr<LossFunction> loss)
@@ -16,14 +18,20 @@ void Network::add(std::shared_ptr<Layer> layer)
 // Predict output for given input
 Eigen::MatrixXd Network::predict(const Eigen::MatrixXd &inputData)
 {
-    Eigen::MatrixXd output = inputData;
 
-    for (auto &layer : m_layers)
+    Eigen::MatrixXd result(inputData.rows(), 1);
+
+    for (int i = 0; i < inputData.rows(); i++)
     {
-        output = layer->forwardPropagation(output);
+        Eigen::MatrixXd output = inputData.row(i);
+        for (auto &layer : m_layers)
+        {
+            output = layer->forwardPropagation(output);
+        }
+        result.row(i) = output;
     }
 
-    return output;
+    return result;
 }
 
 // Fit the network to the training data
@@ -31,13 +39,28 @@ void Network::fit(const Eigen::MatrixXd &xTrain, const Eigen::MatrixXd &yTrain, 
 {
     for (int i = 0; i < epochs; i++)
     {
-        Eigen::MatrixXd output = predict(xTrain);
-
-        Eigen::MatrixXd error = m_loss->derivative(yTrain, output);
-
-        for (size_t j = m_layers.size() - 1; j >= 0; j--)
+        double err = 0;
+        for (int j = 0; j < xTrain.rows(); j++)
         {
-            error = m_layers[j]->backwardPropagation(error);
+            Eigen::MatrixXd output = xTrain.row(j);
+            for (auto &layer : m_layers)
+            {
+                output = layer->forwardPropagation(output);
+            }
+
+            err += m_loss->loss(yTrain.col(j), output);
+
+            auto error = m_loss->derivative(yTrain.col(j), output);
+            for (auto it = m_layers.rbegin(); it != m_layers.rend(); ++it)
+            {
+                auto &layer = *it;
+                error = layer->backwardPropagation(error);
+            }
+        }
+
+        if ((i + 1) % 100 == 0)
+        {
+            std::cout << "Epoch: " << i + 1 << " error: " << err << std::endl;
         }
     }
 }

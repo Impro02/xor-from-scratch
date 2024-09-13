@@ -16,6 +16,5 @@ class Layer:
     def backward_propagation(
         self,
         output_error: NDArray,
-        learning_rate: float,
     ) -> NDArray:
         raise NotImplementedError

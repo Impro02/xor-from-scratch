@@ -10,16 +10,13 @@
 int main()
 {
     Eigen::MatrixXd xTrain(4, 2);
-    Eigen::MatrixXd yTrain(4, 1);
+    Eigen::MatrixXd yTrain(1, 4);
 
     xTrain << 0, 0,
         0, 1,
         1, 0,
         1, 1;
-    yTrain << 0,
-        1,
-        1,
-        0;
+    yTrain << 0, 1, 1, 0;
 
     std::shared_ptr<MseLossFunction> mseLossFunction = std::make_shared<MseLossFunction>();
     Network network = Network(mseLossFunction);
@@ -33,7 +30,8 @@ int main()
 
     Eigen::MatrixXd output = network.predict(xTrain);
 
-    std::cout << output << std::endl;
+    std::cout << "output:\n"
+              << output << std::endl;
 
     return 0;
 }

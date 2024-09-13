@@ -46,7 +46,6 @@ class Network:
         x_train: NDArray[Any],  # 3D NDARRAY
         y_train: NDArray[Any],  # 3D NDARRAY
         epochs: int,
-        learning_rate: float,
     ) -> None:
         # sample dimension first
         samples = len(x_train)
@@ -68,7 +67,6 @@ class Network:
                 for layer in reversed(self._layers):
                     error = layer.backward_propagation(
                         output_error=error,
-                        learning_rate=learning_rate,
                     )
 
             # calculate average error on all samples

@@ -23,17 +23,16 @@ y_train = np.array(
 net = Network(
     loss=MseLossFunction(),
 )
-net.add(FCLayer(2, 3))
+net.add(FCLayer(2, 3, learning_rate=0.05))
 net.add(ActivationLayer(activation=TanhFunction()))
-net.add(FCLayer(3, 1))
+net.add(FCLayer(3, 1, learning_rate=0.05))
 net.add(ActivationLayer(activation=TanhFunction()))
 
 # train
 net.fit(
     x_train,
     y_train,
-    epochs=20000,
-    learning_rate=0.05,
+    epochs=1000,
 )
 
 # test
