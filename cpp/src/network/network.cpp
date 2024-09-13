@@ -37,10 +37,12 @@ Eigen::MatrixXd Network::predict(const Eigen::MatrixXd &inputData)
 // Fit the network to the training data
 void Network::fit(const Eigen::MatrixXd &xTrain, const Eigen::MatrixXd &yTrain, const int epochs)
 {
+    auto samples = xTrain.rows();
+
     for (int i = 0; i < epochs; i++)
     {
         double err = 0;
-        for (int j = 0; j < xTrain.rows(); j++)
+        for (int j = 0; j < samples; j++)
         {
             Eigen::MatrixXd output = xTrain.row(j);
             for (auto &layer : m_layers)
@@ -58,9 +60,11 @@ void Network::fit(const Eigen::MatrixXd &xTrain, const Eigen::MatrixXd &yTrain, 
             }
         }
 
-        if ((i + 1) % 100 == 0)
+        err /= samples;
+
+        if (i == 0 || (i + 1) % 100 == 0)
         {
-            std::cout << "Epoch: " << i + 1 << " error: " << err << std::endl;
+            std::cout << "Epoch: " << i + 1 << "/" << epochs << " error: " << err << std::endl;
         }
     }
 }
